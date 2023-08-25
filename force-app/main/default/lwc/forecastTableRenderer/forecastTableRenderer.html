@@ -1,0 +1,97 @@
+<template>
+    <template lwc:if={renderTable}>
+        <div class="nav-container">
+            <div class="nav-items">
+
+                <div class="nav-item nav-item-dropdown">
+                <div class="dropdown-trigger" >
+                    <div class="dropdown-trigger-text"><span>View</span></div>
+                    <div class="dropdown-trigger-arrow">
+                        <lightning-icon 
+                            icon-name="utility:down" size="xx-small" 
+                            style="--slds-c-icon-color-foreground-default: #FFFFFF;"
+                            alternative-text="View Dropdown" ></lightning-icon>
+                    </div>
+                </div>
+                <div class="dropdown-menu">
+                    <div class="dropdown-menu-item">
+                        <lightning-button class="dropdown-buttons" variant="base" label="Show full attributes" title="Show full attributes" ></lightning-button>
+                    </div>
+                    <div class="dropdown-menu-item">              
+                            <lightning-button-stateful
+                                class="dropdown-buttons"
+                                label-when-off="Show monthly summary"
+                                label-when-on="Show monthly summary"
+                                icon-name-when-on="utility:check"
+                                selected={showMonthlySummary}
+                                onclick={toggleMonthlySummary}>
+                            </lightning-button-stateful>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="table-container slds-p-bottom_x-large slds-p-left_medium slds-p-right_x-small">
+            <table>
+                <thead>
+                    <tr>
+                        <template for:each={headers} for:item="header">
+                            <th class="slds-p-left_large" key={header.key}>
+                                <div> {header.value} </div>
+                            </th>
+                        </template>
+                        <template lwc:if={showMonthlySummary} for:each={monthsHeader} for:item="monthheader">
+                            <th  class="slds-p-left_large"  key={monthheader.key}>
+                                <div> {monthheader.value} </div>
+                            </th>
+                        </template>
+                        <template lwc:else for:each={yearsHeader} for:item="yearheader">
+                            <th  class="slds-p-left_large" key={yearheader.key}>
+                                <div> {yearheader.value} </div>
+                            </th>
+                        </template>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={dataRows} for:item="row">
+                        <tr class="stick-first" key={row.key}>
+                            <template for:each={row.data} for:item="data">
+                                <td class="slds-p-left_large"  key={data.key}>
+                                    <div class="table-data"> {data.value} </div>
+                                </td>
+                            </template>
+                            <template lwc:if={showMonthlySummary}  for:each={row.monthlyData} for:item="data">
+                                <td class="slds-p-left_large"  key={data.key}>
+                                    <div class="table-data"> {data.value} </div>
+                                </td>
+                            </template>
+                            <template lwc:else for:each={row.annualData} for:item="data">
+                                <td class="slds-p-left_large"  key={data.key}>
+                                    <div class="table-data"> {data.value} </div>
+                                </td>
+                            </template>
+                        </tr>
+                    </template>
+                        <!-- summary row -->
+                        <tr class="summary-row">
+                            <template for:each={summaryRows.paddingRows} for:item="data">
+                                <td class="slds-p-left_large"  key={data.key}>
+                                    <div class="table-data"> {data.value} </div>
+                                </td>
+                            </template>
+                            <template lwc:if={showMonthlySummary}  for:each={summaryRows.monthlySummaryRows} for:item="data">
+                                <td class="slds-p-left_large"  key={data.key}>
+                                    <div class="table-data"> {data.value} </div>
+                                </td>
+                            </template>
+                            <template lwc:else for:each={summaryRows.yearlySummaryRows} for:item="data">
+                                <td class="slds-p-left_large"  key={data.key}>
+                                    <div class="table-data"> {data.value} </div>
+                                </td>
+                            </template>
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+    </template>
+</template>
