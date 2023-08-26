@@ -13,8 +13,14 @@
 	 - [SummaryYearsData.cls](/force-app/main/default/classes/SummaryYearsData.cls)
 2. LWC
 
-	-  [expediteAssignmentHome](/force-app/main/default/lwc/expediteAssignmentHome)
-	- [forecastTableRenderer](/force-app/main/default/lwc/forecastTableRenderer)
+	-  [/expediteAssignmentHome/](/force-app/main/default/lwc/expediteAssignmentHome)
+		-  [expediteAssignmentHome.html](/force-app/main/default/lwc/expediteAssignmentHome/expediteAssignmentHome.html)
+  		-  [expediteAssignmentHome.js](/force-app/main/default/lwc/expediteAssignmentHome/expediteAssignmentHome.js)
+ 		-  [expediteAssignmentHome.css](/force-app/main/default/lwc/expediteAssignmentHome/expediteAssignmentHome.css)
+	- [/forecastTableRenderer/](/force-app/main/default/lwc/forecastTableRenderer)
+		-  [forecastTableRenderer.html](/force-app/main/default/lwc/forecastTableRenderer/forecastTableRenderer.html)
+  		-  [forecastTableRenderer.js](/force-app/main/default/lwc/forecastTableRenderer/forecastTableRenderer.js)
+ 		-  [forecastTableRenderer.css](/force-app/main/default/lwc/forecastTableRenderer/forecastTableRenderer.css)
 
 ## Project 2
 > Write a trigger on contact object, to create an AccountContactRole record with Role as “Billing”, when first Contact is created for the Account.
